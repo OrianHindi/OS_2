@@ -2,7 +2,7 @@ CC=gcc
 FLAGS=-g -Wall
 
 
-all: ipc 2.1.1 2.2.1 2.3.1
+all: ipc 2.1.1 2.1.2 2.2.1 2.2.2 2.3.1 2.3.2
 
 
 ipc: IPC.c
@@ -10,11 +10,20 @@ ipc: IPC.c
 
 2.1.1: 2.1.1.c
 	$(CC) $(FLAGS) -o $@ $< -pthread
+
+2.1.2: 2.1.2.c
+	$(CC) $(FLAGS) -o $@ $< -pthread
  
 2.2.1: 2.2.1.c
 	$(CC) $(FLAGS) -o $@ $< -pthread
 
+2.2.2: 2.2.2.c
+	$(CC) $(FLAGS) -o $@ $< -pthread
+
 2.3.1: 2.3.1.c
+	$(CC) $(FLAGS) -o $@ $< -pthread
+
+2.3.2: 2.3.2.c
 	$(CC) $(FLAGS) -o $@ $< -pthread
 
 
@@ -22,7 +31,7 @@ ipc: IPC.c
 
 
 clean:
-	rm ipc 2.1.1 2.2.1 2.3.1
+	rm -f ipc 2.1.1 2.1.2 2.2.1 2.2.2 2.3.1 2.3.2
 
 
 

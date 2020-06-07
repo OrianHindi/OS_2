@@ -1,14 +1,26 @@
+//
+//In order to create a livelock we wanted the professors to pull the right fork together and then release it together
+//to produce this state in the code we added more states of the professors.
+//In fact, the situation is that all the professors are picking up the fork together and taking the luck off together and
+//in this way can't eat but are still trying ie we created a livelock
+//
+
 #include <pthread.h>
 #include <semaphore.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #define N 5
-#define THINKING 2
-#define HUNGRY 1
-#define EATING 0
+#define THINKING 0
+#define HUNGRY 3
+#define EATING 4
 #define LEFT (phnum + 4) % N
 #define RIGHT (phnum + 1) % N
+//--Add--//
+#define RIGHT_TAKEN 2
+#define LEFT_TAKEN 1
+#define PUT_DOWN 5
 
 int state[N];
 int phil[N] = { 0, 1, 2, 3, 4 };
@@ -16,39 +28,83 @@ int phil[N] = { 0, 1, 2, 3, 4 };
 sem_t mutex;
 sem_t S[N];
 
+//CHANGES:We split the take fork function into the following two functions:
+//LeftTaken, RightTaken so that we can better control the taking and placing of the philosophers' forks.
+bool LeftTaken(int phnum)
+{
+    bool toReturn=false;
+    if ((state[LEFT] != EATING && state[LEFT] != RIGHT_TAKEN && state[phnum] != LEFT_TAKEN && state[LEFT] != PUT_DOWN)
+             || (state[phnum] == PUT_DOWN && state[LEFT] == PUT_DOWN)) {
+        if (state[phnum] == HUNGRY || state[phnum] ==PUT_DOWN) {
+            state[phnum] = LEFT_TAKEN;
+            toReturn=true;
+            printf("Philosopher %d takes fork %d \n",phnum + 1, LEFT + 1);
+        }
+        else if (state[phnum] == RIGHT_TAKEN) {
+            state[phnum] = EATING;
+            toReturn=true;
+            printf("Philosopher %d takes fork %d\n",phnum + 1, LEFT + 1);
+            printf("Philosopher %d is *EATING*\n",phnum + 1);
+            sleep(2);
+        }
+        sem_post(&S[phnum]);
+    }
+    return toReturn;
+}
+
+bool RightTaken(int phnum){
+    bool toReturn=false;
+    if ((state[RIGHT] != EATING && state[RIGHT] != LEFT_TAKEN && state[phnum] != RIGHT_TAKEN && state[RIGHT] != PUT_DOWN)
+        || (state[phnum] == PUT_DOWN && state[RIGHT] == PUT_DOWN)) {
+        if (state[phnum] == HUNGRY || state[phnum] == PUT_DOWN) {
+            state[phnum] = RIGHT_TAKEN;
+            toReturn=true;
+            printf("Philosopher %d takes fork %d\n", phnum + 1, phnum + 1);
+        } else if (state[phnum] == LEFT_TAKEN) {
+            state[phnum] = EATING;
+            toReturn=true;
+            printf("Philosopher %d takes fork %d\n", phnum + 1, phnum + 1);
+            printf("Philosopher %d is *EATING*\n", phnum + 1);
+            sleep(2);
+        }
+        sem_post(&S[phnum]);
+    }
+    return toReturn;
+}
+
 void test(int phnum)
 {
-    if (state[phnum] == HUNGRY
-        && state[LEFT] != EATING
-        && state[RIGHT] != EATING) {
-        // state that eating
-        state[phnum] = EATING;
-
-        sleep(2);
-
-        printf("Philosopher %d takes fork %d and %d\n",
-               phnum + 1, LEFT + 1, phnum + 1);
-
-        printf("Philosopher %d is Eating\n", phnum + 1);
-
-        // sem_post(&S[phnum]) has no effect
-        // during takefork
-        // used to wake up hungry philosophers
-        // during putfork
-        sem_post(&S[phnum]);
+    if (state[phnum] == LEFT_TAKEN || state[phnum] == PUT_DOWN || state[phnum] == HUNGRY || state[phnum] == RIGHT_TAKEN){
+        //can take right fork
+        bool flagR = RightTaken(phnum);
+        //can take left fork
+        if (!flagR) {
+            bool flagL = LeftTaken(phnum);
+            //can't take any of the forks
+            if (!flagL) {
+                if (state[phnum] != PUT_DOWN) {
+                    state[phnum] = PUT_DOWN;
+                    printf("Philosopher %d put the fork %d down\n", phnum + 1, phnum + 1);
+                }
+                else{
+                    printf("Philosopher %d is Waiting\n", phnum + 1);
+                }
+                sem_post(&S[phnum]);
+            }
+        }
     }
 }
 
 // take up chopsticks
-void take_fork(int phnum)
+void take_fork(int phnum) //get hungry
 {
-
     sem_wait(&mutex);
 
-    // state that hungry
-    state[phnum] = HUNGRY;
-
-    printf("Philosopher %d is Hungry\n", phnum + 1);
+    if (state[phnum] == THINKING) {
+        // state that hungry
+        state[phnum] = HUNGRY;
+        printf("Philosopher %d is Hungry\n", phnum + 1);
+    }
 
     // eat if neighbours are not eating
     test(phnum);
@@ -62,27 +118,25 @@ void take_fork(int phnum)
 }
 
 // put down chopsticks
-void put_fork(int phnum)
+void put_fork(int phnum) //get thinking
 {
-
     sem_wait(&mutex);
+    if (state[phnum] == EATING) {
+        // state that thinking
+        state[phnum] = THINKING;
 
-    // state that thinking
-    state[phnum] = THINKING;
+        printf("Philosopher %d putting fork %d and %d down\n",
+               phnum + 1, LEFT + 1, phnum + 1);
+        printf("Philosopher %d is thinking\n", phnum + 1);
 
-    printf("Philosopher %d putting fork %d and %d down\n",
-           phnum + 1, LEFT + 1, phnum + 1);
-    printf("Philosopher %d is thinking\n", phnum + 1);
-
-    test(LEFT);
-    test(RIGHT);
-
+        test(LEFT);
+        test(RIGHT);
+    }
     sem_post(&mutex);
 }
 
 void* philospher(void* num)
 {
-
     while (1) {
 
         int* i = num;
