@@ -1,0 +1,3 @@
+/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir

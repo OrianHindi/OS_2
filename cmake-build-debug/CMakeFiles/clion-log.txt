@@ -1,0 +1,4 @@
+/snap/clion/114/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/bin/gcc -DCMAKE_CXX_COMPILER=/bin/clang++-9 -G "CodeBlocks - Unix Makefiles" /home/orian/CLionProjects/OS_task2
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/orian/CLionProjects/OS_task2/cmake-build-debug
