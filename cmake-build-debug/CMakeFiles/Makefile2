@@ -74,12 +74,12 @@ clean: CMakeFiles/OS_task2.dir/clean
 CMakeFiles/OS_task2.dir/all:
 	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/depend
 	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target OS_task2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target OS_task2"
 .PHONY : CMakeFiles/OS_task2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/OS_task2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/OS_task2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/OS_task2.dir/rule

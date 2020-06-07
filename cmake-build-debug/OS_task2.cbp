@@ -78,10 +78,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/orian/CLionProjects/OS_task2/2.1.2.c">
+			<Option target="OS_task2"/>
+		</Unit>
 		<Unit filename="/home/orian/CLionProjects/OS_task2/2.2.1.c">
 			<Option target="OS_task2"/>
 		</Unit>
+		<Unit filename="/home/orian/CLionProjects/OS_task2/2.2.2.c">
+			<Option target="OS_task2"/>
+		</Unit>
 		<Unit filename="/home/orian/CLionProjects/OS_task2/2.3.1.c">
+			<Option target="OS_task2"/>
+		</Unit>
+		<Unit filename="/home/orian/CLionProjects/OS_task2/2.3.2.c">
 			<Option target="OS_task2"/>
 		</Unit>
 		<Unit filename="/home/orian/CLionProjects/OS_task2/CMakeLists.txt">

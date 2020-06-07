@@ -79,6 +79,9 @@ void put_fork(int phnum)
     sem_post(&mutex);
 }
 
+
+//Every thread with even number will sleep for 5000 sec and wont get CPU time.
+//Starvation happened.
 void* philospher(void* num)
 {
 

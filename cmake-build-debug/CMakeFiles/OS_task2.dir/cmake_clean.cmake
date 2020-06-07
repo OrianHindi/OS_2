@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/OS_task2.dir/2.1.2.c.o"
   "CMakeFiles/OS_task2.dir/2.2.1.c.o"
+  "CMakeFiles/OS_task2.dir/2.2.2.c.o"
   "CMakeFiles/OS_task2.dir/2.3.1.c.o"
+  "CMakeFiles/OS_task2.dir/2.3.2.c.o"
   "OS_task2"
   "OS_task2.pdb"
 )

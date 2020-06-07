@@ -123,6 +123,33 @@ OS_task2/fast:
 	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/build
 .PHONY : OS_task2/fast
 
+2.1.2.o: 2.1.2.c.o
+
+.PHONY : 2.1.2.o
+
+# target to build an object file
+2.1.2.c.o:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.1.2.c.o
+.PHONY : 2.1.2.c.o
+
+2.1.2.i: 2.1.2.c.i
+
+.PHONY : 2.1.2.i
+
+# target to preprocess a source file
+2.1.2.c.i:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.1.2.c.i
+.PHONY : 2.1.2.c.i
+
+2.1.2.s: 2.1.2.c.s
+
+.PHONY : 2.1.2.s
+
+# target to generate assembly for a file
+2.1.2.c.s:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.1.2.c.s
+.PHONY : 2.1.2.c.s
+
 2.2.1.o: 2.2.1.c.o
 
 .PHONY : 2.2.1.o
@@ -149,6 +176,33 @@ OS_task2/fast:
 2.2.1.c.s:
 	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.2.1.c.s
 .PHONY : 2.2.1.c.s
+
+2.2.2.o: 2.2.2.c.o
+
+.PHONY : 2.2.2.o
+
+# target to build an object file
+2.2.2.c.o:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.2.2.c.o
+.PHONY : 2.2.2.c.o
+
+2.2.2.i: 2.2.2.c.i
+
+.PHONY : 2.2.2.i
+
+# target to preprocess a source file
+2.2.2.c.i:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.2.2.c.i
+.PHONY : 2.2.2.c.i
+
+2.2.2.s: 2.2.2.c.s
+
+.PHONY : 2.2.2.s
+
+# target to generate assembly for a file
+2.2.2.c.s:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.2.2.c.s
+.PHONY : 2.2.2.c.s
 
 2.3.1.o: 2.3.1.c.o
 
@@ -177,6 +231,33 @@ OS_task2/fast:
 	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.3.1.c.s
 .PHONY : 2.3.1.c.s
 
+2.3.2.o: 2.3.2.c.o
+
+.PHONY : 2.3.2.o
+
+# target to build an object file
+2.3.2.c.o:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.3.2.c.o
+.PHONY : 2.3.2.c.o
+
+2.3.2.i: 2.3.2.c.i
+
+.PHONY : 2.3.2.i
+
+# target to preprocess a source file
+2.3.2.c.i:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.3.2.c.i
+.PHONY : 2.3.2.c.i
+
+2.3.2.s: 2.3.2.c.s
+
+.PHONY : 2.3.2.s
+
+# target to generate assembly for a file
+2.3.2.c.s:
+	$(MAKE) -f CMakeFiles/OS_task2.dir/build.make CMakeFiles/OS_task2.dir/2.3.2.c.s
+.PHONY : 2.3.2.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +267,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... OS_task2"
+	@echo "... 2.1.2.o"
+	@echo "... 2.1.2.i"
+	@echo "... 2.1.2.s"
 	@echo "... 2.2.1.o"
 	@echo "... 2.2.1.i"
 	@echo "... 2.2.1.s"
+	@echo "... 2.2.2.o"
+	@echo "... 2.2.2.i"
+	@echo "... 2.2.2.s"
 	@echo "... 2.3.1.o"
 	@echo "... 2.3.1.i"
 	@echo "... 2.3.1.s"
+	@echo "... 2.3.2.o"
+	@echo "... 2.3.2.i"
+	@echo "... 2.3.2.s"
 .PHONY : help
 
 

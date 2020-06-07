@@ -16,6 +16,8 @@ int phil[N] = { 0, 1, 2, 3, 4 };
 sem_t mutex;
 sem_t S[N];
 
+
+
 void test(int phnum)
 {
     if (state[phnum] == HUNGRY
@@ -40,12 +42,9 @@ void test(int phnum)
 }
 
 // take up chopsticks
-
-//CHANGES: Every philosopher wait to his Right Fork to be free,which wont happened
-//because all the semaphore initialized to be 0. Deadlock happened.
 void take_fork(int phnum)
 {
-    sem_wait(&S[RIGHT]);  //evrey phil wait to the phil from his RIGHT to put down the fork but evrey one has a fork.
+
     sem_wait(&mutex);
 
     // state that hungry
@@ -83,6 +82,8 @@ void put_fork(int phnum)
     sem_post(&mutex);
 }
 
+
+//Time of sleep been changed, for all the other thread will be able to finish what they start without starvation.
 void* philospher(void* num)
 {
 
@@ -90,7 +91,7 @@ void* philospher(void* num)
 
         int* i = num;
 
-        sleep(1);
+        sleep(5);
 
         take_fork(*i);
 

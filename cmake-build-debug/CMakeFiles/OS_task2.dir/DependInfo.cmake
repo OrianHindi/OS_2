@@ -4,8 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/orian/CLionProjects/OS_task2/2.1.2.c" "/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir/2.1.2.c.o"
   "/home/orian/CLionProjects/OS_task2/2.2.1.c" "/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir/2.2.1.c.o"
+  "/home/orian/CLionProjects/OS_task2/2.2.2.c" "/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir/2.2.2.c.o"
   "/home/orian/CLionProjects/OS_task2/2.3.1.c" "/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir/2.3.1.c.o"
+  "/home/orian/CLionProjects/OS_task2/2.3.2.c" "/home/orian/CLionProjects/OS_task2/cmake-build-debug/CMakeFiles/OS_task2.dir/2.3.2.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -10,17 +10,30 @@
 #define LEFT (phnum + 4) % N
 #define RIGHT (phnum + 1) % N
 
+//--Changes--//
+#define TAKEN 1
+#define FREE 0
+int Forks[N]={0};
+//---Function put_fork and test have changed--//
+
+
 int state[N];
 int phil[N] = { 0, 1, 2, 3, 4 };
+
+
 
 sem_t mutex;
 sem_t S[N];
 
 void test(int phnum)
 {
-    if (state[phnum] == HUNGRY
-        && state[LEFT] != EATING
-        && state[RIGHT] != EATING) {
+    if (state[phnum] == HUNGRY && (Forks[RIGHT] == FREE || Forks[LEFT]==FREE)) {
+       if(Forks[RIGHT]==FREE) Forks[RIGHT]=TAKEN;
+       else if(Forks[LEFT]==FREE) Forks[LEFT]=TAKEN;
+
+
+       if(Forks[LEFT]==TAKEN && Forks[RIGHT]==TAKEN){
+
         // state that eating
         state[phnum] = EATING;
 
@@ -36,16 +49,15 @@ void test(int phnum)
         // used to wake up hungry philosophers
         // during putfork
         sem_post(&S[phnum]);
+       }
+       sem_post(&S[phnum]);
     }
 }
 
 // take up chopsticks
-
-//CHANGES: Every philosopher wait to his Right Fork to be free,which wont happened
-//because all the semaphore initialized to be 0. Deadlock happened.
 void take_fork(int phnum)
 {
-    sem_wait(&S[RIGHT]);  //evrey phil wait to the phil from his RIGHT to put down the fork but evrey one has a fork.
+
     sem_wait(&mutex);
 
     // state that hungry
@@ -76,6 +88,10 @@ void put_fork(int phnum)
     printf("Philosopher %d putting fork %d and %d down\n",
            phnum + 1, LEFT + 1, phnum + 1);
     printf("Philosopher %d is thinking\n", phnum + 1);
+
+
+    Forks[RIGHT+1]=FREE;
+    Forks[LEFT+1]=FREE;
 
     test(LEFT);
     test(RIGHT);
